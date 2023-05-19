@@ -57,7 +57,7 @@
     </p>
   </form>
   <div id="create-account-wrap">
-    <p>
+    <p> <a href="{{route('index')}}">Back To Login</a><p>
   </div><!--create-account-wrap-->
 </div><!--login-form-wrap-->
 <!-- partial -->
