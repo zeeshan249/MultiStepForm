@@ -55,7 +55,7 @@
     </p>
   </form>
   <div id="create-account-wrap">
-    <p>Not a member? <a href="{{route('signup')}}">Create Account</a><p>
+  
   </div><!--create-account-wrap-->
 </div><!--login-form-wrap-->
 <!-- partial -->
