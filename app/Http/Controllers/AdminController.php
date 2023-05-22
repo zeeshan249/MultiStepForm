@@ -21,7 +21,9 @@ class AdminController extends Controller
             return redirect()->route('admindashboard');
         }
         else{
-            
+            return redirect()->back()->withErrors([
+                'error' => 'Invalid email or password.',
+            ]);   
         }
        }
 
