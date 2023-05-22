@@ -39,21 +39,20 @@
                 @endif
 
 
-                @if (empty($user->company_name) && empty($user->company_stage) && empty($user->company_phone
-                && empty($user->country_name) && empty($user->city_name) && empty($user->website_name)
-                && empty($user->contact_name) && empty($user->contact_email) && empty($user->contact_address) ) ) 
-                <td> 
-                  
-                     Form Fillup Incomplete
-                </td>
-                @else
-                <td> 
-                
-                    <a target="_blank" class="logout-button" href="{{ route('confirmIndividualDownloadPDF',['userId' => $user->userId]) }}">
-                     Download Pdf  
-                     </a>
-                </td>
-                @endif
+
+            @if   (empty($user->company_name) && empty($user->company_stage) && empty($user->company_phone))
+            <td>Form Incomplete</td>
+            @elseif(empty($user->country_name) && empty($user->city_name) && empty($user->website_name))
+            <td>Form Incomplete</td>
+            @elseif(empty($user->contact_name) && empty($user->contact_email) && empty($user->contact_address))
+            <td>Form Incomplete</td>
+            @else
+            <td>
+                <a target="_blank" class="logout-button" href="{{ route('confirmIndividualDownloadPDF',['userId' => $user->userId]) }}">
+                    Download PDF
+                </a>
+            </td>
+            @endif
          
             </tr>   
             @endforeach
