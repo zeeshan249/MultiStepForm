@@ -11,6 +11,7 @@
 <!-- partial:index.partial.html -->
 <div id="login-form-wrap">
   <h2> Admin Login</h2>
+  <a href="{{route('index')}}">Go To User</a>
   <form id="login-form" action="{{route('confirmAdminLogin')}}" method="POST" >
     @csrf
  

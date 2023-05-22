@@ -35,7 +35,7 @@ Route::group(['middleware' => 'auth'],function(){
 });
 
 Route::group(['prefix'=>'admin'],function(){
-	Route::get('/login', 'AdminController@index')->name('adminindex');
+	Route::get('/', 'AdminController@index')->name('adminindex');
 	Route::post('/confirmAdminLogin', 'AdminController@confirmAdminLogin')->name('confirmAdminLogin');
 	
 });
