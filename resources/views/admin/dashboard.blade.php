@@ -48,8 +48,8 @@
             <td>Form Incomplete</td>
             @else
             <td>
-                <a target="_blank" class="logout-button" href="{{ route('confirmIndividualDownloadPDF',['userId' => $user->userId]) }}">
-                    Download PDF
+                <a target="_blank"  href="{{ route('confirmIndividualDownloadPDF',['userId' => $user->userId]) }}">
+                  <p class="download-button">  Download PDF</p>  
                 </a>
             </td>
             @endif

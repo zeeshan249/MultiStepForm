@@ -32,7 +32,7 @@
      @enderror
     </p>
 
-    <p>
+        <p>
         <input type="password" id="password" name="password" placeholder="Password" required><i class="validation"><span></span><span></span></i>
        
      
