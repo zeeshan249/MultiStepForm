@@ -51,12 +51,12 @@ class UserController extends Controller
        if(empty($checkCondition->company_name) && empty($checkCondition->company_stage) && empty($checkCondition->company_phone)) {
         return redirect()->route('dashboard');
        }
-    //    //for step 2 form
+ 
        else if(empty($checkCondition->country_name) && empty($checkCondition->city_name) && empty($checkCondition->website_name)){
         return redirect()->route('step2');
        }
 
-    //   //for step 3 form
+ 
        else if(empty($checkCondition->contact_name) && empty($checkCondition->contact_email) && empty($checkCondition->contact_address)){
         return redirect()->route('step3');
        }
@@ -162,6 +162,44 @@ class UserController extends Controller
     // Output the PDF file for download
     return $dompdf->stream($fileName);
    }
+
+   public function confirmIndividualDownloadPDF(Request $request){
+    $details=DB::table('multi_step_form')  
+    ->join('users','users.id' ,'=', 'multi_step_form.user_id')
+    ->where('user_id',$request->userId)->first();
+
+
+   $pdfContent = '<ul>';
+   $pdfContent .= '<li>User Name: ' . $details->name . '</li>';
+   $pdfContent .= '<li>Company Name: ' . $details->company_name . '</li>';
+   $pdfContent .= '<li>Company Stage: ' .$details->company_stage. '</li>';
+   $pdfContent .= '<li>Company Phone: ' . $details->company_phone . '</li>';
+   $pdfContent .= '<li>Country Name: ' . $details->country_name. '</li>';
+   $pdfContent .= '<li>City Name: ' . $details->city_name . '</li>';
+   $pdfContent .= '<li>Website Name: ' . $details->website_name . '</li>';
+   $pdfContent .= '<li>Contact Name: ' . $details->contact_name . '</li>';
+   $pdfContent .= '<li>Contact Email: ' . $details->contact_email . '</li>';
+   $pdfContent .= '<li>Contact Phone: ' . $details->contact_phone . '</li>';
+   $pdfContent .= '</ul>';
+
+   // Create a new instance of Dompdf
+   $dompdf = new Dompdf();
+
+   // Load HTML content into Dompdf
+   $dompdf->loadHtml($pdfContent);
+
+   // (Optional) Set paper size and orientation
+   $dompdf->setPaper('A4', 'portrait');
+
+   // Render the PDF content
+   $dompdf->render();
+
+   // Generate the PDF file name
+   $fileName = 'details.pdf';
+
+   // Output the PDF file for download
+   return $dompdf->stream($fileName);
+  }
    public function logout(){
     Auth::logout();
     return redirect()->route('index') ;
