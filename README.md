@@ -14,7 +14,7 @@
 ---
 
 
-## In Future Scope The Admin will be able to download the pdf form those who filled up the form completely half filled form  detils cannot be downloaded
+
 
 
 
