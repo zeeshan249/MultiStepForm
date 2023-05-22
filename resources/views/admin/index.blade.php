@@ -11,6 +11,17 @@
 <!-- partial:index.partial.html -->
 <div id="login-form-wrap">
   <h2> Admin Login</h2>
+  @if($errors->has('error'))
+  <div class="alert alert-danger">
+    {{ $errors->first('error') }}
+  </div>
+  @endif
+
+  @if (session('error'))
+  <div class="alert alert-danger">
+      {{ session('error') }}
+  </div>
+  @endif
   <a href="{{route('index')}}">Go To User</a>
   <form id="login-form" action="{{route('confirmAdminLogin')}}" method="POST" >
     @csrf

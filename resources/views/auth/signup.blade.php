@@ -12,8 +12,14 @@
 <div id="login-form-wrap">
   <h2>Sign Up</h2>
   @if (session('success'))
-  <div class="alert alert-danger">
+  <div class="alert alert-success">
       {{ session('success') }}
+  </div>
+  @endif
+
+  @if (session('error'))
+  <div class="alert alert-danger">
+      {{ session('error') }}
   </div>
   @endif
   <form id="login-form" action="{{ route('confirmSignup') }}" method="POST" >

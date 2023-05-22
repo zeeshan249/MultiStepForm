@@ -26,6 +26,7 @@ class UserController extends Controller
         'user_type' => 'required',
         'password' => 'required|min:4',
     ]);
+    try{
     $user=User::create([
    
         'name' => $request->input('username'),
@@ -34,6 +35,10 @@ class UserController extends Controller
         'user_type' => $request->input('user_type'),
         'password' => Hash::make($request->input('password')),
     ]);
+    }
+    catch(\Exception $ex){
+        return redirect()->route('signup')->with('error', 'Something went wrong');
+    }
     return redirect()->route('signup')->with('success', 'Registration successful!');
    }
 
@@ -70,7 +75,7 @@ class UserController extends Controller
     else{ 
     // Authentication failed
     return redirect()->back()->withErrors([
-        'login_failed' => 'Invalid email or password.',
+        'error' => 'Invalid email or password.',
     ]);
     }
    }
